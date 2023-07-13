@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 32
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99a51a10ad5402c93ecae421b0c2eb4, type: 3}
+  m_Name: ScriptableSettings
+  m_EditorClassIdentifier: 
+  skillColorActive: {r: 0, g: 1, b: 0.11269832, a: 1}
+  skillColorAvailable: {r: 0, g: 0.8310704, b: 1, a: 1}
+  skillColorInactive: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  lineHeight: 5
