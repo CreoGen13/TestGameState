@@ -55,17 +55,23 @@ namespace UI.SkillTree
                 .AddTo(Disposable);
         }
 
-        public void SetCurrentNodeState(CurrentNodeState currentNodeState)
-        {
-            Model.CurrentNodeState = currentNodeState;
-            Model.Update();
-        }
         public SkillNode[] GenerateSkills()
         {
             var skillNodes = View.GetSkillNodes();
             View.InstantiateLines();
             
             return skillNodes;
+        }
+
+        public void SetStartIndex(int startIndex)
+        {
+            View.SetStartIndex(startIndex);
+        }
+        
+        public void SetCurrentNodeState(CurrentNodeState currentNodeState)
+        {
+            Model.CurrentNodeState = currentNodeState;
+            Model.Update();
         }
         public void UpdateSkillsView(UndirectedSkill[] skills)
         {

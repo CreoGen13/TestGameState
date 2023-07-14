@@ -83,6 +83,7 @@ namespace Services
                 }
             }
 
+            _skillTreePresenter.SetStartIndex(_startNumber);
             return _startNumber;
         }
     }

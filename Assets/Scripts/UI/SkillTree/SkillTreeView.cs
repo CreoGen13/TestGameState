@@ -33,6 +33,7 @@ namespace UI.SkillTree
         private SkillNode[] _skillNodes;
         private SkillNode _currentSkillNode;
         private int _currentSkillIndex;
+        private int _startIndex = 0;
 
         [Inject]
         private void Construct(SkillTreePresenter skillTreePresenter, ScriptableSettings settings)
@@ -80,7 +81,7 @@ namespace UI.SkillTree
             {
                 if (_currentSkillNode == null)
                 {
-                    _presenter.OnSkillsForgetAll?.Invoke(0, 0);
+                    _presenter.OnSkillsForgetAll?.Invoke(_startIndex, 0);
                     return;
                 }
                 _presenter.OnSkillsForgetAll?.Invoke(_currentSkillIndex, _currentSkillNode.Points);
@@ -89,18 +90,13 @@ namespace UI.SkillTree
             {
                 if (_currentSkillNode == null)
                 {
-                    _presenter.OnGetPoint?.Invoke(0, 0);
+                    _presenter.OnGetPoint?.Invoke(_startIndex, 0);
                     return;
                 }
                 _presenter.OnGetPoint?.Invoke(_currentSkillIndex, _currentSkillNode.Points);
             });
         }
-        public void SetBottomButtonsState(bool buttonUnlockState, bool buttonForgetState)
-        {
-            buttonUnlock.interactable = buttonUnlockState;
-            buttonForget.interactable = buttonForgetState;
-        }
-
+        
         public SkillNode[] GetSkillNodes()
         {
             return _skillNodes;
@@ -127,6 +123,17 @@ namespace UI.SkillTree
                     }
                 }
             }
+        }
+
+        public void SetStartIndex(int startIndex)
+        {
+            _startIndex = startIndex;
+        }
+        
+        public void SetBottomButtonsState(bool buttonUnlockState, bool buttonForgetState)
+        {
+            buttonUnlock.interactable = buttonUnlockState;
+            buttonForget.interactable = buttonForgetState;
         }
         public void UpdateSkillsView(UndirectedSkill[] skills)
         {
