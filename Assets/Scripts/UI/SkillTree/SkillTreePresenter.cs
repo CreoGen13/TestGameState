@@ -14,7 +14,7 @@ namespace UI.SkillTree
         public Action<SkillState, int, int> OnSkillUpdated;
         public Action<int, int> OnSkillSelected;
         public Action<int, int> OnGetPoint;
-        public Action OnSkillsForgetAll;
+        public Action<int, int> OnSkillsForgetAll;
 
         private IDisposable _currentSkillStateSubscription;
         

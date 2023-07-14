@@ -55,11 +55,18 @@ namespace Game
                             Model.IsUnlockBlocked(index, points))
                     );
                 };
-                _skillTreePresenter.OnSkillsForgetAll += () =>
+                _skillTreePresenter.OnSkillsForgetAll += (index, points) =>
                 {
                     Model.UndirectedResetAll();
                     Model.UndirectedResolveSkill(Model.StartIndex);
                     Model.Update();
+                    
+                    _skillTreePresenter.SetCurrentNodeState(
+                        new SkillTreePresenter.CurrentNodeState(
+                            Model.UndirectedSkills[index].State,
+                            Model.UndirectedIsForgetBlocked(index),
+                            Model.IsUnlockBlocked(index, points))
+                    );
                 };
                 _skillTreePresenter.OnGetPoint += (index, points) =>
                 {

@@ -162,6 +162,8 @@ namespace Game
             
             for(int i = 0; i < nextIndices.Count; i++)
             {
+                if(nextIndices[i] == StartIndex)
+                    continue;
                 switch (UndirectedSkills[index].State)
                 {
                     case SkillState.Active:
