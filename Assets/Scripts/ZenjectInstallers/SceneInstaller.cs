@@ -1,6 +1,7 @@
 using Game;
 using Mono;
 using Other;
+using Scriptables;
 using Services;
 using UI.SkillTree;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace ZenjectInstallers
         [SerializeField] private GameView gameView;
         [SerializeField] private SkillTreeView skillTreeView;
         [SerializeField] private GameLoader gameLoader;
+        [SerializeField] private ScriptableSettings settings;
         
         // [Header("Prefabs")]
         // [SerializeField] private GameObject linePrefab;
@@ -22,6 +24,7 @@ namespace ZenjectInstallers
             BindGame();
             BindServices();
             BindSkillTree();
+            BindScriptables();
             // BindLineFactory();
         }
 
@@ -54,6 +57,13 @@ namespace ZenjectInstallers
             Container
                 .Bind<GameLoader>()
                 .FromInstance(gameLoader)
+                .AsSingle();
+        }
+        private void BindScriptables()
+        {
+            Container
+                .Bind<ScriptableSettings>()
+                .FromInstance(settings)
                 .AsSingle();
         }
         // private void BindLineFactory()

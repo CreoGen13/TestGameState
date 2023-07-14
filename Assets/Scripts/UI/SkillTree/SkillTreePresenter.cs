@@ -62,7 +62,7 @@ namespace UI.SkillTree
         }
         public SkillNode[] GenerateSkills()
         {
-            var skillNodes = View.GenerateSkillNodes();
+            var skillNodes = View.GetSkillNodes();
             View.InstantiateLines();
             
             return skillNodes;

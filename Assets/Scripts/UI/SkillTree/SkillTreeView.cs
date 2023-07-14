@@ -27,6 +27,7 @@ namespace UI.SkillTree
         [SerializeField] private TextMeshProUGUI pointsText;
         
         private SkillTreePresenter _presenter;
+        private ScriptableSettings _settings;
         private LineFactory _lineFactory;
         
         private SkillNode[] _skillNodes;
@@ -34,14 +35,17 @@ namespace UI.SkillTree
         private int _currentSkillIndex;
 
         [Inject]
-        private void Construct(SkillTreePresenter skillTreePresenter)
+        private void Construct(SkillTreePresenter skillTreePresenter, ScriptableSettings settings)
         {
             _presenter = skillTreePresenter;
-            _lineFactory = new LineFactory(linePrefab);
+            _settings = settings;
         }
 
         private void Start()
         {
+            _skillNodes = window.GetComponentsInChildren<SkillNode>(true);
+            _lineFactory = new LineFactory(linePrefab);
+            
             InitButtons();
         }
         private void InitButtons()
@@ -87,10 +91,8 @@ namespace UI.SkillTree
             buttonForget.interactable = buttonForgetState;
         }
 
-        public SkillNode[] GenerateSkillNodes()
+        public SkillNode[] GetSkillNodes()
         {
-            _skillNodes = window.GetComponentsInChildren<SkillNode>(true);
-
             return _skillNodes;
         }
         public void InstantiateLines()
@@ -109,7 +111,7 @@ namespace UI.SkillTree
                         var length = Mathf.Abs(difference.magnitude);
                         var angle = (difference.x > 0 ? -1 : 1) * Quaternion.LookRotation(difference).eulerAngles.x;
                         line.SetTransform(
-                            new Vector2(length, ScriptableSettings.Instance.lineHeight),
+                            new Vector2(length, _settings.lineHeight),
                             pos,
                             angle);
                     }
@@ -124,17 +126,17 @@ namespace UI.SkillTree
                 {
                     case GamePresenter.SkillState.Active:
                     {
-                        skill.SetColor(ScriptableSettings.Instance.skillColorActive);
+                        skill.SetColor(_settings.skillColorActive);
                         break;
                     }
                     case GamePresenter.SkillState.Available:
                     {
-                        skill.SetColor(ScriptableSettings.Instance.skillColorAvailable);
+                        skill.SetColor(_settings.skillColorAvailable);
                         break;
                     }
                     case GamePresenter.SkillState.Inactive:
                     {
-                        skill.SetColor(ScriptableSettings.Instance.skillColorInactive);
+                        skill.SetColor(_settings.skillColorInactive);
                         break;
                     }
                 }
