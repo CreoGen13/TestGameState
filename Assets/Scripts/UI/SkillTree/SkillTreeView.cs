@@ -82,6 +82,11 @@ namespace UI.SkillTree
             });
             buttonGetPoint.onClick.AddListener(() =>
             {
+                if (_currentSkillNode == null)
+                {
+                    _presenter.OnGetPoint?.Invoke(0, 0);
+                    return;
+                }
                 _presenter.OnGetPoint?.Invoke(_currentSkillIndex, _currentSkillNode.Points);
             });
         }
